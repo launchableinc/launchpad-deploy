@@ -1,6 +1,6 @@
 FROM python:3.7-alpine3.9
 
-RUN apk add --no-cache curl perl bash docker
+RUN apk add --no-cache curl perl bash docker jq
 
 RUN pip install awscli
 RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
