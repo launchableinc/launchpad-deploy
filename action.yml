@@ -1,0 +1,20 @@
+name: kubernetes-deploy
+description: Replace $GITREF in kubernetes/**/*.yaml with SHA1 and then `kubectl apply -f .`
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+inputs:
+  aws_access_key_id:
+    description: Your AWS_ACCESS_KEY_ID
+    required: true
+  aws_secret_access_key:
+    description: Your AWS_SECRET_ACCESS_KEY
+    required: true
+  aws_region:
+    description: The region of the cluster
+    required: false
+    default: us-west
+  cluster_name:
+    description: The name of the cluster you're using
+    required: false
+    default: main
