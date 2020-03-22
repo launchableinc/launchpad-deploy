@@ -15,5 +15,5 @@ if [ "${GITHUB_REF}" = "refs/heads/master" ]; then
     aws eks --region "$INPUT_AWS_REGION" update-kubeconfig --name "$INPUT_CLUSTER_NAME"
     cd kubernetes
     find . -type f -name '*.yaml' | xargs perl -i -p -e "s/\\\$GITREF/${GITHUB_SHA}/g;" 
-    kubectl apply -R -f .
+    kubectl apply -k overlays/production
 fi
