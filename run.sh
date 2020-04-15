@@ -11,7 +11,7 @@ docker tag $INPUT_IMAGE $REMOTE
 docker push $REMOTE
 
 # apply config
-if [ "${GITHUB_REF}" = "refs/heads/master" ]; then
+if [ "${GITHUB_REF}" = "refs/heads/master" -a -n "$INPUT_CLUSTER_NAME" ]; then
     aws eks --region "$INPUT_AWS_REGION" update-kubeconfig --name "$INPUT_CLUSTER_NAME"
     cd kubernetes
     find . -type f -name '*.yaml' | xargs perl -i -p -e "s/\\\$GITREF/${GITHUB_SHA}/g;" 
